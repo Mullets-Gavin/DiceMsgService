@@ -15,7 +15,7 @@ end})
 
 --// functions
 local function ExecuteCode(plr) -- throw some code in here to execute if the player is found
-	plr:Kick('Banned')
+	plr:Kick('\nBanned')
 end
 
 function MsgService.RepliesAsync(userID)
@@ -51,7 +51,10 @@ function MsgService.RepliesAsync(userID)
 			end
 		end
 	end)
-	wait(3)
+	local timeout = tick()
+	repeat
+		Services['RunService'].Heartbeat:Wait()
+	until tick()-timeout >= 3 or serverReplied
 	if not serverReplied then
 		return false,replyEvent
 	else
