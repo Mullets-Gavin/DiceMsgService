@@ -5,7 +5,7 @@
 
 --[[
 	DOCUMENTATION:
-	[todo: link]
+	https://github.com/Mullets-Gavin/DiceMsgService
 	
 	API:
 	:ConnectKey(key,function)
