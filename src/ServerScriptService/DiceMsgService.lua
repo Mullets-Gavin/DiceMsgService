@@ -13,6 +13,7 @@
 	:FireKey(key,message,function)
 	:Parse(key,message)
 	:Pack(key,tuple)
+	.Settings(dictionary)
 --]]
 
 --// logic
