@@ -103,6 +103,7 @@ function MsgService:FireEvent(key,message,func)
 		replyEvent = Services['MessagingService']:SubscribeAsync(MsgService.Prefix..key,function(message)
 			local parse = MsgService:Parse(key,message.Data)
 			func(parse)
+			replyReceived = true
 		end)
 		local startTime = tick()
 		while not replyReceived or (tick() - startTime) > 5 do
