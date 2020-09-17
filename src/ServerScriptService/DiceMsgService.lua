@@ -29,9 +29,9 @@ MsgService.Divider = '|'
 
 --// services
 local Services = setmetatable({}, {__index = function(cache, serviceName)
-	cache[serviceName] = game:GetService(serviceName)
-	return cache[serviceName]
-end})
+		cache[serviceName] = game:GetService(serviceName)
+		return cache[serviceName]
+	end})
 
 --// functions
 function MsgService.Settings(dict)
@@ -105,8 +105,8 @@ function MsgService:FireEvent(key,message,func)
 			func(parse)
 			replyReceived = true
 		end)
-		local startTime = tick()
-		while not replyReceived or (tick() - startTime) > 5 do
+		local startTime = os.clock()
+		while not replyReceived or (os.clock() - startTime) > 5 do
 			Services['RunService'].Heartbeat:Wait()
 		end
 		replyEvent:Disconnect()
@@ -129,7 +129,7 @@ function MsgService:ConnectKey(key,func)
 	}
 	MsgService.Cache[key]['Event'] = Services['MessagingService']:SubscribeAsync(key,function(message)
 		local results = func(message.Data)
-		if not results then return end
+		if results == nil then return end
 		local packedMsg = MsgService:Pack(key,results)
 		if tostring(packedMsg) then
 			if #packedMsg > MsgService.Kilobyte then
